@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hafnia Tattoo | Tattoo København | Black & Grey Realism</title>
+  <meta name="description" content="Hafnia Tattoo i København. Specialiseret i black & grey realism. Book tattoo via WhatsApp eller Instagram. Professionel tattoo artist i København.">
+  <meta name="keywords" content="tattoo københavn, tattoo artist københavn, black and grey tattoo, realism tattoo, hafnia tattoo, tattoo copenhagen">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hafnia Tattoo København">
+  <meta property="og:description" content="Black & Grey Realism tattoo i København. Book din næste tattoo.">
+  <meta property="og:image" content="images/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Local SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TattooParlor",
+    "name": "Hafnia Tattoo",
+    "image": "images/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rådhusstræde 7",
+      "addressLocality": "København",
+      "addressCountry": "DK"
+    },
+    "telephone": "+4552715288",
+    "url": "https://hafnia.tattoo",
+    "sameAs": [
+      "https://instagram.com/hafniatattoo"
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050505;
+      --bg2:#0a0908;
+      --panel:#080808;
+      --line:rgba(194,132,73,.34);
+      --line-soft:rgba(255,255,255,.12);
+      --gold:#d6a15f;
+      --gold2:#f0c47e;
+      --text:#f2eee7;
+      --muted:#c9c1b8;
+      --dim:#81776c;
+      --shadow:0 0 42px rgba(214,161,95,.17);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 50% -10%, rgba(126,76,34,.18), transparent 26%),
+        linear-gradient(180deg,#050505 0%,#080706 45%,#050505 100%);
+      color:var(--text);
+      font-family:Inter,system-ui,sans-serif;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;z-index:-2;
+      background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size:48px 48px;
+      opacity:.22;
+      pointer-events:none;
+    }
+    body:after{
+      content:"";
+      position:fixed;inset:0;z-index:-1;
+      background:radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.76) 100%);
+      pointer-events:none;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    .topbar{
+      position:fixed;top:0;left:0;width:100%;height:76px;z-index:999;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 38px;
+      background:rgba(4,4,4,.92);
+      border-bottom:1px solid rgba(214,161,95,.25);
+      backdrop-filter:blur(14px);
+    }
+    
+    .brand{
+      font-family:Cinzel,serif;
+      letter-spacing:.28em;
+      font-size:21px;
+      color:var(--gold2);
+      text-shadow:0 0 18px rgba(214,161,95,.25);
+      white-space:nowrap;
+    }
+    .nav{display:flex;align-items:center;gap:48px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f4eee7;position:relative;z-index:998}
+
+    .menu-toggle{
+      display:none;
+      font-size:22px;
+      color:var(--gold2);
+      cursor:pointer;
+    }
+    .nav a{opacity:.9;transition:.2s}
+    .nav a:hover{color:var(--gold2)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      height:50px;padding:0 32px;
+      border:1px solid var(--gold);
+      color:#f8d195;background:rgba(0,0,0,.16);
+      font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+      transition:.22s;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+    }
+    .btn:hover{box-shadow:0 0 34px rgba(214,161,95,.22);background:rgba(214,161,95,.08)}
+
+    .btn-primary{
+      background:linear-gradient(135deg,#d6a15f,#f0c47e);
+      color:#1a1209;
+      border:none;
+      box-shadow:0 0 28px rgba(214,161,95,.45);
+    }
+    .btn-primary:hover{
+      background:linear-gradient(135deg,#e0b372,#ffd28f);
+      box-shadow:0 0 38px rgba(214,161,95,.6);
+    }
+
+    .topbar .btn-primary{
+      background:rgba(214,161,95,.14);
+      border:1px solid rgba(214,161,95,.55);
+      color:#f0c47e;
+      box-shadow:none;
+    }
+
+    .topbar .btn-primary:hover{
+      background:rgba(214,161,95,.22);
+      box-shadow:0 0 22px rgba(214,161,95,.18);
+    }
+
+    .hero-copy .btn:not(.btn-primary){
+      opacity:.72;
+    }
+
+    .hero-copy .btn:not(.btn-primary):hover{
+      opacity:1;
+    }
+    .ig{font-size:17px;line-height:1;transform:translateY(-1px)}
+
+    .hero{
+      position:relative;min-height:650px;padding-top:76px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.56) 42%,rgba(0,0,0,.23) 63%,rgba(0,0,0,.84) 100%),
+        radial-gradient(circle at 28% 35%,rgba(137,79,37,.32),transparent 28%),
+        #050505;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:76px 0 0 0;z-index:0;
+      background:url('images/statue.png') right center/auto 100% no-repeat;
+      opacity:.63;mix-blend-mode:screen;
+      filter:contrast(1.08) brightness(.78);
+    }
+    .hero:after{
+      content:"";position:absolute;inset:76px 0 0 0;z-index:1;
+      background:
+        linear-gradient(90deg,#050505 0%,transparent 20%,transparent 70%,#050505 100%),
+        linear-gradient(180deg,transparent 0%,rgba(0,0,0,.08) 65%,#050505 100%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;z-index:2;max-width:1280px;margin:0 auto;
+      display:grid;grid-template-columns:1.12fr .88fr;align-items:center;
+      min-height:574px;padding:30px 38px 42px;
+    }
+    .hero-logo-wrap{position:relative;display:flex;align-items:center;justify-content:flex-start;min-height:490px}
+    .hero-logo-wrap:before{
+      content:"";position:absolute;width:610px;height:420px;left:16px;top:48px;
+      background:radial-gradient(ellipse at center,rgba(151,93,49,.28),rgba(0,0,0,.05) 54%,transparent 72%);
+      filter:blur(4px);
+    }
+    .hero-logo{
+      position:relative;width:min(570px,48vw);filter:drop-shadow(30px 34px 18px rgba(0,0,0,.72)) drop-shadow(0 0 18px rgba(214,161,95,.14));
+      transform:translateX(10px);
+    }
+    .hero-copy{max-width:390px;margin-left:10px;transform:translateY(-8px)}
+    .eyebrow{display:flex;align-items:center;gap:18px;color:var(--gold);font-family:Cinzel,serif;letter-spacing:.34em;font-size:16px;font-weight:600;margin-bottom:16px;text-transform:uppercase}
+    .eyebrow:before{content:"";width:36px;height:1px;background:rgba(214,161,95,.55)}
+    h1{
+      font-family:"Cormorant Garamond",serif;
+      font-size:69px;line-height:.92;font-weight:700;letter-spacing:.025em;text-transform:uppercase;
+      text-shadow:0 2px 0 #000;
+    }
+    .small-orn{width:210px;height:28px;margin:25px 0 22px;position:relative;border-top:1px solid rgba(255,255,255,.15)}
+    .small-orn:before{content:"✥";position:absolute;left:0;top:-10px;color:var(--gold);font-size:14px;text-shadow:18px 0 0 rgba(214,161,95,.45),36px 0 0 rgba(214,161,95,.25)}
+    .hero-copy p{color:#e8dfd6;font-size:16px;line-height:1.72;margin-bottom:28px}
+
+    section{position:relative;border-bottom:1px solid rgba(255,255,255,.1)}
+    .section-inner{max-width:1220px;margin:0 auto;padding:12px 36px 36px}
+    .section-label{
+      display:flex;align-items:center;justify-content:center;gap:22px;
+      color:var(--gold);font-family:Cinzel,serif;font-size:15px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+      margin:0 auto 10px;
+    }
+    .section-label:before,.section-label:after{content:"";width:125px;height:1px;background:linear-gradient(90deg,transparent,rgba(214,161,95,.65))}
+    .section-label:after{background:linear-gradient(90deg,rgba(214,161,95,.65),transparent)}
+    .section-label span:before,.section-label span:after{content:"◆";font-size:7px;color:rgba(214,161,95,.8);vertical-align:middle;margin:0 13px 0 0}
+    .section-label span:after{margin:0 0 0 13px}
+    .title{
+      text-align:center;font-family:"Cormorant Garamond",serif;font-weight:700;text-transform:uppercase;
+      font-size:43px;letter-spacing:.045em;line-height:1;color:#f7f1e9;margin-bottom:32px;
+    }
+
+    .gallery{background:linear-gradient(180deg,#060606 0%,#080808 100%)}
+    .gallery .section-inner{padding-top:8px;padding-bottom:23px}
+    .work-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;margin:0 auto 18px}
+    .work-card{height:278px;border:1px solid rgba(255,255,255,.18);background:#111;overflow:hidden;position:relative;cursor:pointer}
+    .work-card:before{content:"";position:absolute;inset:0;z-index:2;box-shadow:inset 0 0 70px rgba(0,0,0,.66);pointer-events:none;transition:.35s ease}
+    .work-card:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg,rgba(214,161,95,.20),rgba(0,0,0,.18)),
+        radial-gradient(circle at 50% 35%,rgba(240,196,126,.10),rgba(0,0,0,.38) 78%);
+      mix-blend-mode:color;
+      opacity:.72;
+      transition:.35s ease;
+    }
+    .work-card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.72) contrast(1.22) brightness(.72) sepia(.28) saturate(.75);transition:.35s ease}
+    .work-card:hover:after{opacity:0}
+    .work-card:hover:before{box-shadow:inset 0 0 34px rgba(0,0,0,.38)}
+    .work-card:hover img{transform:scale(1.06);filter:grayscale(0) contrast(1.08) brightness(.98) sepia(0) saturate(1)}
+
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;display:none;align-items:center;justify-content:center;padding:24px}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:min(1100px,94vw);max-height:88vh;border:1px solid rgba(214,161,95,.35);box-shadow:0 0 55px rgba(0,0,0,.8)}
+    .lightbox-close{position:absolute;top:22px;right:28px;color:#f0c47e;font-size:34px;cursor:pointer}
+    .center{text-align:center;display:flex;justify-content:center}
+
+    .prices{background:radial-gradient(circle at 50% 0%,rgba(161,94,39,.14),transparent 22%),#050505}
+    .prices .section-inner{padding-top:10px;padding-bottom:42px}
+    .price-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;max-width:880px;margin:0 auto}
+    .price-card{
+      position:relative;min-height:370px;padding:37px 72px 36px;
+      border:1px solid rgba(255,255,255,.18);background:rgba(5,5,5,.66);
+      box-shadow:inset 0 0 0 1px rgba(214,161,95,.03);
+    }
+    .price-card.featured{border-color:var(--gold);box-shadow:0 0 42px rgba(214,161,95,.24),inset 0 0 40px rgba(214,161,95,.05)}
+    .ribbon{position:absolute;right:-1px;top:-1px;background:#f3cc83;color:#15100a;font-weight:900;font-size:13px;letter-spacing:.08em;padding:14px 18px;text-transform:uppercase}
+    .ribbon:after{content:"";position:absolute;right:0;bottom:-18px;border-top:18px solid #d49d54;border-left:18px solid transparent}
+    .hours{display:flex;align-items:center;justify-content:center;gap:16px;color:var(--gold2);font-family:Cinzel,serif;font-size:17px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;white-space:nowrap}
+    .hours:before,.hours:after{content:"";width:43px;height:1px;background:var(--gold)}
+    .amount{font-family:"Cormorant Garamond",serif;font-size:72px;line-height:1;text-align:center;color:#fff;margin-bottom:10px;white-space:nowrap}
+    .amount span{font-family:Cinzel,serif;color:var(--gold2);font-size:27px;margin-left:10px;letter-spacing:.08em}
+    .sub{text-align:center;color:var(--gold2);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:22px}
+    .ticks{list-style:none;display:grid;gap:13px;color:#eee5dc;font-size:14px;line-height:1.2;margin-bottom:25px}
+    .ticks li:before{content:"✓";color:var(--gold2);margin-right:11px}
+    .price-card .btn{width:100%;max-width:270px;margin:0 auto;display:flex}
+
+    .bottom{
+      min-height:300px;background:
+        linear-gradient(90deg,#080808 0%,#080808 42%,rgba(5,5,5,.78) 62%,rgba(5,5,5,.22) 100%),
+        url('images/copenhagen.png') right center/auto 100% no-repeat,#070707;
+    }
+    .bottom-inner{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1.05fr 1.9fr;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08)}
+    .bottom-col{min-height:300px;padding:38px 34px;border-right:1px solid rgba(255,255,255,.08)}
+    .bottom-col:last-child{border-right:0}
+    .mini-title{font-family:Cinzel,serif;letter-spacing:.24em;color:#f5e7d6;font-size:16px;font-weight:700;text-transform:uppercase;margin-bottom:22px;position:relative}
+    .mini-title:after{content:"✥";display:block;color:var(--gold);font-size:11px;margin-top:3px;letter-spacing:.1em}
+    .bottom p{color:#ddd3c9;font-size:14px;line-height:1.82;max-width:285px}
+    .info-list{display:grid;gap:15px;color:#ddd3c9;font-size:13px;line-height:1.25}
+    .info-row{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:flex-start}
+    .ico{color:var(--gold2);font-size:18px;text-align:center}
+    .info-row strong{display:block;color:#f4e9de;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
+    .contact-box{display:grid;gap:16px;max-width:300px}
+    .footer-logo{width:100%;margin-top:22px;filter:drop-shadow(0 0 18px rgba(214,161,95,.12))}
+    .seo-content{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+    .seo-content .section-inner{padding-top:46px;padding-bottom:52px;opacity:.78}
+    .seo-content .title{font-size:30px;margin-bottom:24px}
+    .footer-mark{background:#050505;padding:24px 20px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .footer-mark .footer-logo{width:min(760px,92vw);margin:0 auto;filter:drop-shadow(0 0 18px rgba(214,161,95,.12))}
+    footer{text-align:center;color:#998d81;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:18px 20px 22px;background:#050505}
+
+    .seo-content{
+  background:#050505;
+  opacity:.72;
+}
+
+.seo-content .section-inner{
+  max-width:780px !important;
+  padding-top:60px;
+  padding-bottom:70px;
+}
+
+.seo-content p,
+.seo-content li{
+  font-size:14px;
+  color:#9f978e !important;
+}
+
+.seo-content .title{
+  font-size:26px !important;
+  color:#c9c1b8;
+}
+
+    .contact-form{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px}
+    .contact-form input,.contact-form textarea{
+      width:100%;background:rgba(0,0,0,.58);border:1px solid rgba(214,161,95,.28);color:#fff;padding:14px 15px;font:500 13px Inter,sans-serif;outline:none;
+    }
+    .contact-form textarea{grid-column:1/-1;min-height:92px;resize:vertical}
+    .contact-form button{grid-column:1/-1;height:48px;border:1px solid var(--gold);background:rgba(214,161,95,.08);color:#f8d195;font-weight:900;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+
+    .sticky-booking{display:none}
+
+    .mobile-booking-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:1000;background:rgba(4,4,4,.94);border-top:1px solid rgba(214,161,95,.35);padding:10px 14px;backdrop-filter:blur(12px)}
+    .mobile-booking-bar .btn{width:100%;height:46px}
+
+    @media(max-width:980px){
+      .topbar{height:72px;min-height:72px;padding:0 20px;gap:18px;position:fixed;top:0;left:0;width:100%;flex-wrap:nowrap}
+      .nav{order:3;width:100%;justify-content:center;gap:22px;font-size:10px}.topbar .btn{display:none}
+      .hero{padding-top:112px}.hero:before{inset:112px 0 0 0;background-size:auto 82%;background-position:right top}
+      .hero-inner{grid-template-columns:1fr;min-height:auto;padding:20px 22px 46px}.hero-logo-wrap{min-height:300px;justify-content:center}.hero-logo{width:min(520px,92vw);transform:none}.hero-copy{margin:0 auto;text-align:left}h1{font-size:56px}
+      .work-grid{grid-template-columns:repeat(2,1fr)}.work-card{height:260px}.price-grid{grid-template-columns:1fr;gap:22px}.bottom-inner{grid-template-columns:1fr}.bottom-col{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}.bottom{background:linear-gradient(180deg,#080808 0%,rgba(5,5,5,.86) 65%,rgba(5,5,5,.62)),url('images/copenhagen.png') center bottom/cover no-repeat}
+    }
+    @media(max-width:980px){
+      .menu-toggle{display:block}
+      .nav{
+        position:fixed;
+        top:72px;
+        left:0;
+        width:100%;
+        background:#050505;
+        flex-direction:column;
+        gap:18px;
+        padding:20px 0;
+        display:none;
+        border-bottom:1px solid rgba(214,161,95,.25);
+      }
+      .nav.active{display:flex}
+    }
+
+    @media(max-width:980px){
+      body{padding-bottom:68px}
+      .mobile-booking-bar{display:block}
+    }
+
+    @media(max-width:560px){
+      body{padding-bottom:68px}
+      .sticky-booking{display:none}
+      .mobile-booking-bar{display:block}
+      .brand{font-size:15px}.hero{padding-top:76px}.hero:before{inset:76px 0 0 0;opacity:.4}.hero-logo-wrap{min-height:260px}.hero-logo{width:96vw}.hero-copy{max-width:330px}.eyebrow{font-size:12px}h1{font-size:44px}.section-inner{padding-left:18px;padding-right:18px}.section-label:before,.section-label:after{width:56px}.title{font-size:34px}.work-grid{gap:8px}.work-card{height:215px}.price-card{padding:34px 25px}.amount{font-size:60px}.hours{font-size:13px}.contact-form{grid-template-columns:1fr}
+    }
+
+    .work-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:
+    grayscale(.35)
+    contrast(1.08)
+    brightness(.82)
+    sepia(.10);
+    transition:
+    transform .55s ease,
+    filter .55s ease;
+}
+
+.work-card:hover img{
+  transform:scale(1.05);
+  filter:
+    grayscale(0)
+    contrast(1.02)
+    brightness(1);
+}
+.work-card{
+  height:340px;
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <a class="brand" href="#top">HAFNIA TATTOO</a>
+    <nav class="nav">
+      <a href="#galleri">Galleri</a>
+      <a href="#reviews">Anmeldelser</a>
+      <a href="#priser">Priser</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tattoo-koebenhavn.html">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">WhatsApp</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-logo-wrap">
+          <img class="hero-logo" src="images/logo2.png" alt="Hafnia Tattoo logo">
+        </div>
+        <div class="hero-copy">
+          <div class="eyebrow">Copenhagen</div>
+          <h1>Black & Grey<br>Realism</h1>
+          <div class="small-orn"></div>
+          <p>Detaljer. Kontrast. Holdbarhed.<br>Tatoveringer med fokus på realisme, komposition og tidløst håndværk.<br><span style="color:#c9c1b8;font-size:14px">Specialiseret i black & grey – arbejder også i farver.</span></p>
+          <div style="color:#f0c47e;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:-12px 0 22px">
+            Ledige tider åbnes løbende - skriv for næste tid
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
+          <a class="btn" href="https://instagram.com/hafniatattoo" target="_blank" rel="noopener">Instagram <span class="ig">◎</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="galleri">
+      <div class="section-inner">
+        <div class="section-label"><span>Galleri</span></div>
+        <h2 class="title">Udvalgte Tattoos</h2>
+        <div class="work-grid">
+          <figure class="work-card" onclick="openLightbox('images/a12.jpg')"><img src="images/a12.jpg" alt="Black and grey tattoo København - work 1" loading="lazy"></figure>
+          <figure class="work-card" onclick="openLightbox('images/a14.jpg')"><img src="images/a14.jpg" alt="Realism tattoo København - work 2" loading="lazy"></figure>
+          <figure class="work-card" onclick="openLightbox('images/a1.jpg')"><img src="images/a1.jpg" alt="Custom tattoo København - work 3" loading="lazy"></figure>
+          <figure class="work-card" onclick="openLightbox('images/9.jpg')"><img src="images/9.jpg" alt="Black grey realism tattoo - work 4" loading="lazy"></figure>
+          <figure class="work-card" onclick="openLightbox('images/a9.jpg')"><img src="images/a9.jpg" alt="Sleeve tattoo København - work 5" loading="lazy"></figure>
+          <figure class="work-card" onclick="openLightbox('images/a6.jpg')"><img src="images/a6.jpg" alt="Tattoo artist København - work 6" loading="lazy"></figure>
+        </div>
+        <div class="center"><a class="btn" href="https://instagram.com/hafniatattoo" target="_blank" rel="noopener">Se flere works <span class="ig">◎</span></a></div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="section-inner">
+        <div class="section-label"><span>Anmeldelser</span></div>
+        <h2 class="title">Hvad kunder siger</h2>
+
+        <div style="max-width:900px;margin:0 auto;display:grid;gap:18px">
+          <div style="text-align:center;margin-bottom:6px">
+            <div style="font-family:Cinzel,serif;letter-spacing:.2em;color:#f0c47e;font-weight:700">5.0 ★★★★★ (Google)</div>
+          </div>
+
+          <div style="background:rgba(0,0,0,.4);border:1px solid rgba(214,161,95,.2);padding:18px">
+            <p style="color:#f0c47e">★★★★★</p>
+            <p>“Best tattoo in Copenhagen.”</p>
+            <small style="color:#aaa">– Aiza</small>
+          </div>
+
+          <div style="background:rgba(0,0,0,.4);border:1px solid rgba(214,161,95,.2);padding:18px">
+            <p style="color:#f0c47e">★★★★★</p>
+            <p>“Jeg elsker den behandling man får – der bliver lyttet, og vi finder altid de fedeste tattoos.”</p>
+            <small style="color:#aaa">– Kaya</small>
+          </div>
+
+          <div style="background:rgba(0,0,0,.4);border:1px solid rgba(214,161,95,.2);padding:18px">
+            <p style="color:#f0c47e">★★★★★</p>
+            <p>“Rigtig godt sted – god stemning og altid hyggeligt. Fantastisk arbejde i black & grey.”</p>
+            <small style="color:#aaa">– Alex</small>
+          </div>
+
+          <div style="background:rgba(0,0,0,.4);border:1px solid rgba(214,161,95,.2);padding:18px">
+            <p style="color:#f0c47e">★★★★★</p>
+            <p>“Det er super hyggeligt – man får både en flot tattoo og en god oplevelse.”</p>
+            <small style="color:#aaa">– Nikolai</small>
+          </div>
+        </div>
+
+        <div class="center" style="margin-top:30px">
+          <a class="btn" href="https://www.google.com/search?q=hafnia+tattoo+anmeldelser" target="_blank" rel="noopener">Se alle anmeldelser</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="prices" id="priser">
+      <div class="section-inner">
+        <div class="section-label"><span>Priser</span></div>
+        <h2 class="title">Tattoo Sessioner</h2>
+        <div class="price-grid">
+          <article class="price-card">
+            <div class="hours">4 timer</div>
+            <div class="amount">2.500 <span>kr.</span></div>
+            <div class="sub">4 timers session</div>
+            <div style="text-align:center;color:#f0c47e;font-size:12px;font-weight:700;letter-spacing:.12em;margin-bottom:12px">Begrænset antal tider</div>
+            <ul class="ticks">
+              <li>Fokus på detaljer og kvalitet</li>
+              <li>Tilpasset design</li>
+              <li>Grundig forberedelse</li>
+              <li>Efterbehandling og vejledning</li>
+            </ul>
+            <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
+          </article>
+
+          <article class="price-card featured">
+            <div class="ribbon">Best Value</div>
+            <div class="hours">6 timer (heldag)</div>
+            <div class="amount">3.500 <span>kr.</span></div>
+            <div class="sub">6 timers session</div>
+            <div style="text-align:center;color:#f0c47e;font-size:12px;font-weight:700;letter-spacing:.12em;margin-bottom:12px">Få tider hver måned</div>
+            <ul class="ticks">
+              <li>Mere tid til detaljer og flow</li>
+              <li>Ideel til større projekter</li>
+              <li>Bedste værdi</li>
+              <li>Efterbehandling og vejledning</li>
+            </ul>
+            <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom" id="om">
+      <div class="bottom-inner">
+        <div class="bottom-col">
+          <h3 class="mini-title">Om</h3>
+          <p>Hafnia Tattoo er et privat studie i hjertet af København. Her er fokus på kvalitet, hygiejne og en professionel oplevelse fra start til slut.</p>
+          <br>
+          <p>Hver tatovering er unik, ligesom dig.
+          <br><br>
+          <span style="color:#c9c1b8;font-size:13px">Hafnia er det latinske navn for København.</span></p>
+        </div>
+
+        <div class="bottom-col">
+          <h3 class="mini-title">Info</h3>
+          <div class="info-list">
+            <div class="info-row"><span class="ico">▣</span><div><strong>Booking</strong>WhatsApp (hurtigst) eller Instagram</div></div>
+            <div class="info-row"><span class="ico">▤</span><div><strong>Depositum</strong>Kr. 500,- for at sikre din tid</div></div>
+            <div class="info-row"><span class="ico">⊗</span><div><strong>Aflysning</strong>Min. 48t varsel ellers tabes depositum</div></div>
+            <div class="info-row"><span class="ico">⊕</span><div><strong>Aldersgrænse</strong>18+ gyldigt ID kræves</div></div>
+            <div class="info-row"><span class="ico">✺</span><div><strong>Hygiejne</strong>Højeste standard altid – naturligvis med gyldigt hygiejnebevis</div></div>
+          </div>
+        </div>
+
+        <div class="bottom-col" id="kontakt">
+          <h3 class="mini-title">Kontakt</h3>
+          <div class="contact-box">
+            <div class="info-row"><span class="ico">⌖</span><div><a href="https://www.google.com/maps/search/?api=1&query=R%C3%A5dhusstr%C3%A6de%207%2C%20K%C3%B8benhavn" target="_blank" rel="noopener">Rådhusstræde 7, København</a></div></div>
+            <div class="info-row"><span class="ico">◎</span><div>@hafniatattoo</div></div>
+            <div class="info-row"><span class="ico">✉</span><div><a href="mailto:hafniatattoo@gmail.com?subject=Tattoo%20Booking&body=Hi%20I%20want%20to%20book%20a%20tattoo.%0AName:%0AIdea:%0APlacement:%0ASize:%0ADate:%0A">hafniatattoo@gmail.com</a></div></div>
+            <div class="info-row"><span class="ico">☎</span><div><a href="tel:+4552715288">+45 52 71 52 88</a></div></div>
+            <div class="info-row"><span class="ico">✆</span><div><a href="https://wa.me/4552715288" target="_blank" rel="noopener">WhatsApp</a></div></div>
+          </div>
+          <form class="contact-form" id="bookingForm">
+            <input name="navn" placeholder="Navn" required>
+            <input name="email" type="email" placeholder="Email" required>
+            <textarea name="besked" placeholder="Gratis konsultation - skriv kort hvad du ønsker" required></textarea>
+            <button type="submit">Send via WhatsApp</button>
+          </form>
+          
+        </div>
+        
+      </div>
+
+    </section>
+
+    <section class="seo-content" id="seo" style="background:#050505">
+      <div class="section-inner" style="max-width:900px">
+        <h2 class="title" style="font-size:32px">Tattoo København – Hafnia Tattoo</h2>
+
+        <p style="color:#ddd3c9;line-height:1.8;margin-bottom:16px">
+          Leder du efter tattoo i København med fokus på black and grey realism? Hafnia Tattoo er et professionelt tattoo studio i hjertet af København, hvor kvalitet, detaljer og holdbarhed er i fokus.
+        </p>
+
+        <p style="color:#ddd3c9;line-height:1.8;margin-bottom:16px">
+          Som erfaren tattoo artist i København specialiserer jeg mig i realistiske tatoveringer, sleeves og custom designs. Hver tattoo bliver designet individuelt, så du får et unikt resultat, der holder.
+        </p>
+
+        <p style="color:#ddd3c9;line-height:1.8;margin-bottom:30px">
+          Studiet ligger centralt på Rådhusstræde 7 i København. Book din tid via WhatsApp for hurtigst svar.
+        </p>
+
+        <h3 style="color:#f0c47e;margin-bottom:12px">Hvorfor vælge Hafnia Tattoo?</h3>
+        <ul style="color:#ddd3c9;line-height:1.8;margin-bottom:30px">
+          <li>Speciale i black and grey realism</li>
+          <li>Høj detaljegrad og holdbar kvalitet</li>
+          <li>Personlig rådgivning og custom design</li>
+          <li>Central placering i København</li>
+        </ul>
+
+        <h3 style="color:#f0c47e;margin-bottom:12px">Ofte stillede spørgsmål</h3>
+
+        <p style="color:#ddd3c9;margin-bottom:10px"><strong>Hvad koster en tattoo i København?</strong><br>
+        Hos Hafnia Tattoo starter priser fra 2.500 kr. for 4 timer og 3.500 kr. for heldagssession. Mindre projekter kan også bookes til 700 kr. i timen.</p>
+
+        <p style="color:#ddd3c9;margin-bottom:10px"><strong>Hvordan booker jeg en tattoo?</strong><br>
+        Du kan booke direkte via WhatsApp eller Instagram – hurtigste svar via WhatsApp.</p>
+
+        <p style="color:#ddd3c9;margin-bottom:10px"><strong>Hvor ligger studiet?</strong><br>
+        Rådhusstræde 7, København – centralt i hjertet af København og nemt at komme til.</p>
+
+        <p style="color:#ddd3c9"><strong>Hvilken stil laver I?</strong><br>
+        Jeg arbejder primært med black & grey realism. Laver også større projekter som sleeves og full back – og arbejder også i farver.</p>
+      </div>
+    </section>
+    <section class="footer-mark">
+      <img class="footer-logo" src="images/footer_cph.png" alt="Hafnia Tattoo Copenhagen logo">
+    </section>
+  </main>
+
+  <div class="sticky-booking">
+    <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
+  </div>
+
+  <div class="mobile-booking-bar">
+    <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">×</span>
+    <img id="lightboxImg" src="" alt="Tattoo preview">
+  </div>
+
+  <footer>© 2026 Hafnia Tattoo - All Rights Reserved</footer>
+  <script>
+    function toggleMenu(){
+      document.querySelector('.nav').classList.toggle('active');
+    }
+
+    function openLightbox(src){
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox(){
+      document.getElementById('lightbox').classList.remove('active');
+      document.getElementById('lightboxImg').src = '';
+    }
+
+    document.querySelectorAll('.nav a').forEach(function(link){
+      link.addEventListener('click', function(){
+        document.querySelector('.nav').classList.remove('active');
+      });
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const navn = this.navn.value.trim();
+      const email = this.email.value.trim();
+      const besked = this.besked.value.trim();
+      const text = `Hej Hafnia Tattoo. Jeg vil gerne booke / høre om en tattoo.
+
+Navn: ${navn}
+Email: ${email}
+Besked: ${besked}`;
+      window.open('https://wa.me/4552715288?text=' + encodeURIComponent(text), '_blank');
+    });
+  </script>
+</body>
+</html>
