@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
@@ -649,5 +649,28 @@ Besked: ${besked}`;
       window.open('https://wa.me/4552715288?text=' + encodeURIComponent(text), '_blank');
     });
   </script>
+<script>
+(async function(){
+ try {
+  const response=await fetch('/content.json?v='+Date.now(),{cache:'no-store'});
+  if(!response.ok)return;
+  const data=await response.json();
+  const money=n=>new Intl.NumberFormat('da-DK').format(n);
+  const amounts=document.querySelectorAll('.price-card .amount');
+  if(amounts.length>=2){amounts[0].innerHTML=money(data.four_hours)+' <span>kr.</span>';amounts[1].innerHTML=money(data.full_day)+' <span>kr.</span>';}
+  const grid=document.querySelector('#galleri .work-grid');
+  if(grid && Array.isArray(data.gallery)){
+    grid.replaceChildren();
+    data.gallery.forEach((path,i)=>{
+      if(typeof path!=='string'||!/^images\/[\w.\-/]+$/.test(path))return;
+      const fig=document.createElement('figure');fig.className='work-card';
+      const img=document.createElement('img');img.src=path;img.loading='lazy';img.alt='Hafnia Tattoo arbejde '+(i+1);
+      fig.append(img);fig.addEventListener('click',()=>{if(typeof openLightbox==='function')openLightbox(path)});
+      grid.append(fig);
+    });
+  }
+ }catch(err){console.warn('Hafnia content:',err)}
+})();
+</script>
 </body>
 </html>
