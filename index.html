@@ -664,7 +664,7 @@ Besked: ${besked}`;
     data.gallery.forEach((path,i)=>{
       if(typeof path!=='string'||!(/^(images\/[a-zA-Z0-9_.-]+|https:\/\/hafnia-control-auth\.sylvestweb\.workers\.dev\/media\/mobile-[a-f0-9-]+\.(jpg|png|webp))$/.test(path)))return;
       const fig=document.createElement('figure');fig.className='work-card';
-      const img=document.createElement('img');img.src=path;img.loading='lazy';img.alt='Hafnia Tattoo arbejde '+(i+1);const pos=data.positions?.[path];if(pos&&Number.isInteger(pos.x)&&Number.isInteger(pos.y))img.style.objectPosition=pos.x+'% '+pos.y+'%';
+      const img=document.createElement('img');img.src=path;img.loading='lazy';img.alt='Hafnia Tattoo arbejde '+(i+1);const pos=data.positions?.[path];if(pos&&Number.isInteger(pos.x)&&Number.isInteger(pos.y)){img.style.objectPosition=pos.x+'% '+pos.y+'%';const zoom=Math.max(100,Math.min(200,Number(pos.zoom)||100));img.style.transform='scale('+zoom/100+')';img.style.transformOrigin=pos.x+'% '+pos.y+'%';fig.style.overflow='hidden';}
       fig.append(img);fig.addEventListener('click',()=>{if(typeof openLightbox==='function')openLightbox(path)});
       grid.append(fig);
     });
