@@ -1,0 +1,32 @@
+{
+  "name": "hafnia-control-auth",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-18",
+  "workers_dev": true,
+  "kv_namespaces": [
+    {
+      "binding": "SETTINGS",
+      "id": "831caecb88d94341b1d306f54ac35c91"
+    },
+    {
+      "binding": "MEDIA",
+      "id": "2c39bf37c9684392a46ab2abc3bbeea3"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "AUTH",
+        "class_name": "AuthState"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "AuthState"
+      ]
+    }
+  ]
+}
