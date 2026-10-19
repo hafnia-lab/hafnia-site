@@ -163,7 +163,7 @@
         <aside class="hero-card">
           <strong>Rådhusstræde 7</strong>
           <p>Centralt i hjertet af København.</p>
-          <p>4 timer: 2.500 kr.<br>6 timer: 3.500 kr.<br>Mindre projekter: 700 kr. pr. time</p>
+          <p>4 timer: <span data-hafnia-price="four_hours">2.500</span> kr.<br>6 timer: <span data-hafnia-price="full_day">3.500</span> kr.<br>Mindre projekter: <span data-hafnia-price="hourly">700</span> kr. pr. time</p>
           <p>Hurtigste booking via WhatsApp.</p>
         </aside>
       </div>
@@ -209,9 +209,9 @@
 
         <h3>Prisoversigt</h3>
         <ul>
-          <li>4 timers session: 2.500 kr.</li>
-          <li>6 timers heldagssession: 3.500 kr.</li>
-          <li>Mindre projekter: 700 kr. pr. time</li>
+          <li>4 timers session: <span data-hafnia-price="four_hours">2.500</span> kr.</li>
+          <li>6 timers heldagssession: <span data-hafnia-price="full_day">3.500</span> kr.</li>
+          <li>Mindre projekter: <span data-hafnia-price="hourly">700</span> kr. pr. time</li>
           <li>Depositum: 500 kr. for at sikre tiden</li>
         </ul>
         <p>For større projekter som sleeve, full back eller flere sammenhængende motiver anbefales en kort dialog først, så projektet kan planlægges ordentligt.</p>
@@ -237,7 +237,7 @@
 
         <p><strong>Hvor ligger Hafnia Tattoo?</strong><br>Studiet ligger på Rådhusstræde 7 i hjertet af København.</p>
         <p><strong>Hvordan booker jeg en tattoo?</strong><br>Den hurtigste måde at booke på er via WhatsApp. Du kan også skrive på Instagram.</p>
-        <p><strong>Hvad koster en tattoo?</strong><br>4 timer koster 2.500 kr., 6 timer koster 3.500 kr., og mindre projekter kan bookes til 700 kr. pr. time.</p>
+        <p><strong>Hvad koster en tattoo?</strong><br>4 timer koster <span data-hafnia-price="four_hours">2.500</span> kr., 6 timer koster <span data-hafnia-price="full_day">3.500</span> kr., og mindre projekter kan bookes til <span data-hafnia-price="hourly">700</span> kr. pr. time.</p>
         <p><strong>Laver Hafnia Tattoo farver?</strong><br>Ja. Fokus er primært black & grey realism, men der arbejdes også i farver efter projekt og motiv.</p>
         <p><strong>Laver du sleeves og full back?</strong><br>Ja. Større projekter som sleeves, half sleeves og full back kan planlægges efter aftale.</p>
         <p><strong>Skal jeg betale depositum?</strong><br>Ja. Depositum er 500 kr. og bruges til at sikre din tid.</p>
@@ -282,5 +282,22 @@
 })();
 
 </script>
-<script>(async()=>{try{const r=await fetch('https://hafnia-control-auth.sylvestweb.workers.dev/api/public?v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const d=await r.json();const f=n=>new Intl.NumberFormat('da-DK').format(n);const prices=[['2.500',f(d.four_hours)],['3.500',f(d.full_day)],['700',f(Number.isInteger(d.hourly)?d.hourly:700)]];const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(node.parentElement?.closest('script,style'))continue;let t=node.nodeValue;for(const [oldPrice,newPrice] of prices)t=t.split(oldPrice+' kr.').join(newPrice+' kr.');if(t!==node.nodeValue)node.nodeValue=t}document.querySelectorAll('script[type="application/ld+json"]').forEach(s=>{try{const j=JSON.parse(s.textContent);if(j.priceRange!==undefined){j.priceRange=d.hourly+' DKK pr. time, '+d.four_hours+' DKK / 4 timer, '+d.full_day+' DKK / 6 timer';s.textContent=JSON.stringify(j)}}catch(e){}})}catch(e){console.warn('Price sync:',e)}})();</script></body>
+<script>
+(async()=>{
+ try{
+  const r=await fetch('https://hafnia-control-auth.sylvestweb.workers.dev/api/public?t='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw Error('Price API '+r.status);
+  const d=await r.json();
+  const values={four_hours:d.four_hours,full_day:d.full_day,hourly:Number.isInteger(d.hourly)?d.hourly:700};
+  const format=n=>new Intl.NumberFormat('da-DK').format(n);
+  for(const [key,value] of Object.entries(values)){
+   if(!Number.isInteger(value))continue;
+   document.querySelectorAll('[data-hafnia-price="'+key+'"]').forEach(el=>el.textContent=format(value));
+  }
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(el=>{
+   try{const json=JSON.parse(el.textContent);if(json.priceRange!==undefined){json.priceRange=values.hourly+' DKK pr. time, '+values.four_hours+' DKK / 4 timer, '+values.full_day+' DKK / 6 timer';el.textContent=JSON.stringify(json)}}catch(e){}
+  });
+ }catch(e){console.warn('Price sync error',e)}
+})();
+</script></body>
 </html>
