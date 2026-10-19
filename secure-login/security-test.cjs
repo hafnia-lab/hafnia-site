@@ -6,6 +6,8 @@ let count=0;const password=crypto.randomBytes(24).toString('hex'),next=crypto.ra
 async function call(route,body,expected=200,extra={}){const r=await fetch(base+route,{method:body===undefined?'GET':'POST',headers:{origin,'content-type':'application/json',...(cookie?{cookie}:{}),...extra},body:body===undefined?undefined:JSON.stringify(body)});assert.equal(r.status,expected,route+': '+await r.clone().text());count++;return r}
 (async()=>{
 await call('/api/setup-check',{setupKey:secret.SETUP_KEY});
+await call('/api/koebenhavn',undefined,401);
+await call('/api/koebenhavn',{hero:'images/statue.png',gallery:[]},401);
 await call('/api/content',undefined,401);
 await call('/api/setup',{setupKey:'invalid',password},403);
 await call('/api/setup',{setupKey:secret.SETUP_KEY,password});
@@ -23,6 +25,19 @@ const image=(await r.json()).url;
 await call('/api/content',{...initial,gallery:[...initial.gallery,image]});
 r=await call(new URL(image).pathname);assert.equal(r.headers.get('content-type'),'image/png');
 await call('/api/content',initial);
+const kbhInitial=await(await call('/api/koebenhavn')).json();
+assert.deepEqual(kbhInitial,{hero:'images/statue.png',gallery:['images/work1.jpg','images/work2.jpg','images/work3.jpg']});
+await call('/api/koebenhavn',{hero:image,gallery:[image]});
+assert.deepEqual(await(await call('/api/public/koebenhavn')).json(),{hero:image,gallery:[image]});
+assert.deepEqual(await(await call('/api/content')).json(),initial);
+await call('/api/content',initial);
+assert.deepEqual(await(await call('/api/koebenhavn')).json(),{hero:image,gallery:[image]});
+await call('/api/koebenhavn',{hero:'https://evil.example/test.png',gallery:[]},400);
+await call('/api/koebenhavn',{hero:'images/statue.png',gallery:['javascript:alert(1)']},400);
+await call('/api/koebenhavn',{hero:'images/statue.png',gallery:Array(81).fill(image)},400);
+await call('/api/koebenhavn',{hero:'images/statue.png',gallery:[]});
+assert.deepEqual((await(await call('/api/public/koebenhavn')).json()).gallery,[]);
+await call('/api/koebenhavn',kbhInitial);
 await call('/api/password',{oldPassword:password,newPassword:next});
 await call('/api/content',undefined,401);
 cookie='';await call('/api/login',{password},401);
@@ -33,5 +48,5 @@ await call('/api/content',initial,403,{origin:''});
 await call('/api/logout',{});await call('/api/content',undefined,401);assert.match((await call('/admin')).headers.get('content-security-policy'),/frame-ancestors 'none'/);
 cookie='';
 let limited=false;for(let i=0;i<12;i++){r=await fetch(base+'/api/login',{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({password:'wrong'})});if(r.status===429){limited=true;break}}assert.ok(limited);count++;
-console.log('PASS '+count+' checks: setup, login, secure cookie, prices, image upload/read/removal, validation, password rotation/session revocation, CSRF, logout, CSP and rate limit. LOCAL DATA ONLY.');
+console.log('PASS '+count+' checks: setup, login, secure cookie, prices, image upload/read/removal, validation, password rotation/session revocation, CSRF, logout, CSP and rate limit. Includes separate Copenhagen hero/gallery edits, public reads, auth, malicious URL validation, empty gallery, 80-image limit and homepage isolation. LOCAL DATA ONLY.');
 })().catch(e=>{console.error(e.message);process.exitCode=1});
