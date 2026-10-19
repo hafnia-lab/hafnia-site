@@ -5,6 +5,7 @@ const secret=JSON.parse(fs.readFileSync('.hafnia-private/local-test.json','utf8'
 let count=0;const password=crypto.randomBytes(24).toString('hex'),next=crypto.randomBytes(24).toString('hex');
 async function call(route,body,expected=200,extra={}){const r=await fetch(base+route,{method:body===undefined?'GET':'POST',headers:{origin,'content-type':'application/json',...(cookie?{cookie}:{}),...extra},body:body===undefined?undefined:JSON.stringify(body)});assert.equal(r.status,expected,route+': '+await r.clone().text());count++;return r}
 (async()=>{
+await call('/api/setup-check',{setupKey:secret.SETUP_KEY});
 await call('/api/content',undefined,401);
 await call('/api/setup',{setupKey:'invalid',password},403);
 await call('/api/setup',{setupKey:secret.SETUP_KEY,password});
