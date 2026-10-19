@@ -29,7 +29,7 @@ r=await call('/api/login',{password:next});cookie=r.headers.get('set-cookie').sp
 await call('/api/content',undefined,200);
 await call('/api/content',initial,403,{origin:'https://attacker.example'});
 await call('/api/content',initial,403,{origin:''});
-await call('/api/logout',{});assert.match((await call('/admin')).headers.get('content-security-policy'),/frame-ancestors 'none'/);
+await call('/api/logout',{});await call('/api/content',undefined,401);assert.match((await call('/admin')).headers.get('content-security-policy'),/frame-ancestors 'none'/);
 cookie='';
 let limited=false;for(let i=0;i<12;i++){r=await fetch(base+'/api/login',{method:'POST',headers:{origin,'content-type':'application/json'},body:JSON.stringify({password:'wrong'})});if(r.status===429){limited=true;break}}assert.ok(limited);count++;
 console.log('PASS '+count+' checks: setup, login, secure cookie, prices, image upload/read/removal, validation, password rotation/session revocation, CSRF, logout, CSP and rate limit. LOCAL DATA ONLY.');
