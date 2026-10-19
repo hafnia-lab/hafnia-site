@@ -584,7 +584,7 @@
         <h3 style="color:#f0c47e;margin-bottom:12px">Ofte stillede spørgsmål</h3>
 
         <p style="color:#ddd3c9;margin-bottom:10px"><strong>Hvad koster en tattoo i København?</strong><br>
-        Hos Hafnia Tattoo starter priser fra 2.500 kr. for 4 timer og 3.500 kr. for heldagssession. Mindre projekter kan også bookes til 700 kr. i timen.</p>
+        <span data-price-summary>Hos Hafnia Tattoo starter priser fra 2.500 kr. for 4 timer og 3.500 kr. for heldagssession. Mindre projekter kan også bookes til 700 kr. i timen.</span></p>
 
         <p style="color:#ddd3c9;margin-bottom:10px"><strong>Hvordan booker jeg en tattoo?</strong><br>
         Du kan booke direkte via WhatsApp eller Instagram – hurtigste svar via WhatsApp.</p>
@@ -655,7 +655,7 @@ Besked: ${besked}`;
   const response=await fetch('https://hafnia-control-auth.sylvestweb.workers.dev/api/public?v='+Date.now(),{cache:'no-store'});
   if(!response.ok)return;
   const data=await response.json();
-  const money=n=>new Intl.NumberFormat('da-DK').format(n);
+  const money=n=>new Intl.NumberFormat('da-DK').format(n);const hourly=Number.isInteger(data.hourly)?data.hourly:700;document.querySelectorAll('[data-price-summary]').forEach(el=>el.textContent='Hos Hafnia Tattoo starter priser fra '+money(data.four_hours)+' kr. for 4 timer og '+money(data.full_day)+' kr. for heldagssession. Mindre projekter kan også bookes til '+money(hourly)+' kr. i timen.');
   const amounts=document.querySelectorAll('.price-card .amount');
   if(amounts.length>=2){amounts[0].innerHTML=money(data.four_hours)+' <span>kr.</span>';amounts[1].innerHTML=money(data.full_day)+' <span>kr.</span>';}
   const grid=document.querySelector('#galleri .work-grid');
