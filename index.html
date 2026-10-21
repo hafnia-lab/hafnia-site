@@ -385,8 +385,8 @@
   height:340px;
 }
   </style>
-</head>
-<body>
+<style id="hafnia-campaign-style">#hafnia-campaign-bar{display:none;background:#191613;border-bottom:1px solid #806641;color:#e1bf8d;padding:12px 16px;text-align:center;cursor:pointer;font:600 12px/1.5 system-ui;letter-spacing:.055em}#hafnia-campaign-bar:focus-visible{outline:2px solid #e1bf8d;outline-offset:2px}.hafnia-offer-note{font:500 12px system-ui;color:#d9b987;margin:6px 0}.hafnia-old-price{font:14px system-ui;color:#a99b89;text-decoration:line-through;margin:6px 0}</style></head>
+<body><button id="hafnia-campaign-bar" type="button" aria-label="Se kampagnetilbud"></button>
   <header class="topbar">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <a class="brand" href="#top">HAFNIA TATTOO</a>
@@ -659,7 +659,7 @@ Besked: ${besked}`;
   const data=await response.json();
   const money=n=>new Intl.NumberFormat('da-DK').format(n);const hourly=Number.isInteger(data.hourly)?data.hourly:700;document.querySelectorAll('[data-price-summary]').forEach(el=>el.textContent='Hos Hafnia Tattoo starter priser fra '+money(data.four_hours)+' kr. for 4 timer og '+money(data.full_day)+' kr. for heldagssession. Mindre projekter kan også bookes til '+money(hourly)+' kr. i timen.');
   const amounts=document.querySelectorAll('.price-card .amount');
-  if(amounts.length>=2){amounts[0].innerHTML=money(data.four_hours)+' <span>kr.</span>';amounts[1].innerHTML=money(data.full_day)+' <span>kr.</span>';}
+  if(amounts.length>=2){if(!amounts[0].dataset.campaignApplied)amounts[0].innerHTML=money(data.four_hours)+' <span>kr.</span>';if(!amounts[1].dataset.campaignApplied)amounts[1].innerHTML=money(data.full_day)+' <span>kr.</span>';}
   const grid=document.querySelector('#galleri .work-grid');
   if(grid && Array.isArray(data.gallery)){
     grid.replaceChildren();
@@ -674,5 +674,33 @@ Besked: ${besked}`;
  }catch(err){console.warn('Hafnia content:',err)}
 })();
 </script>
-</body>
+<script id="hafnia-campaign-script">(function(){
+const bar=document.getElementById('hafnia-campaign-bar');if(!bar)return;
+const fmt=n=>new Intl.NumberFormat('da-DK').format(n);
+const api='https://hafnia-control-auth.sylvestweb.workers.dev/api/public';
+function render(data){
+ const campaigns=Array.isArray(data.activeCampaigns)?data.activeCampaigns:[];
+ const mapping={four_hours:0,full_day:1},cards=document.querySelectorAll('.price-card');
+ const base={four_hours:data.four_hours,full_day:data.full_day};
+ const offers={};
+ for(const c of campaigns){for(const service of c.services||[]){if(!Object.hasOwn(mapping,service)||offers[service]||!Number.isInteger(base[service])||!Number.isInteger(c.discount)||c.discount<=0||c.discount>=base[service])continue;offers[service]=c;}}
+ for(const [service,index] of Object.entries(mapping)){
+  const card=cards[index];if(!card)continue;const amount=card.querySelector('.amount');if(!amount)continue;
+  card.querySelectorAll('.hafnia-old-price,.hafnia-offer-note').forEach(el=>el.remove());
+  const c=offers[service],price=base[service];if(!Number.isInteger(price))continue;
+  amount.innerHTML=fmt(c?price-c.discount:price)+' <span>kr.</span>';
+  if(c){amount.dataset.campaignApplied='true';card.dataset.campaignTarget='true';
+   const old=document.createElement('div');old.className='hafnia-old-price';old.textContent=fmt(price)+' kr.';amount.before(old);
+   const note=document.createElement('div');note.className='hafnia-offer-note';note.textContent=c.name+' - spar '+fmt(c.discount)+' kr.';amount.after(note);
+  }else{delete amount.dataset.campaignApplied;delete card.dataset.campaignTarget;}
+  const book=card.querySelector('a[href*="wa.me/"]');if(book){const msg='Hi, I would like to book a '+(service==='four_hours'?'4-hour':'6-hour')+' tattoo session'+(c?' with the '+c.name+' offer ('+fmt(price-c.discount)+' DKK).':'.')+' Name:  Idea: ';book.href='https://wa.me/4552715288?text='+encodeURIComponent(msg);}
+ }
+ const hourly=Number.isInteger(data.hourly)?data.hourly:700;
+ document.querySelectorAll('[data-price-summary]').forEach(el=>el.textContent='Hos Hafnia Tattoo starter priser fra '+fmt(base.four_hours-(offers.four_hours?.discount||0))+' kr. for 4 timer og '+fmt(base.full_day-(offers.full_day?.discount||0))+' kr. for heldagssession. Mindre projekter kan også bookes til '+fmt(hourly)+' kr. i timen.');
+ const names=[...new Set(Object.values(offers).map(c=>c.name))];
+ if(names.length){bar.textContent=names.join(' / ')+' - Se kampagnetilbud';bar.style.display='block';}else{bar.style.display='none';}
+}
+bar.addEventListener('click',()=>document.querySelector('.price-card[data-campaign-target="true"]')?.scrollIntoView({behavior:'smooth',block:'center'}));
+fetch(api,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Campaign fetch '+r.status);return r.json()}).then(render).catch(e=>console.warn('Hafnia campaigns:',e));
+})();</script></body>
 </html>
