@@ -385,7 +385,7 @@
   height:340px;
 }
   </style>
-<style id="hafnia-campaign-style">#hafnia-campaign-bar{display:none;background:#191613;border-bottom:1px solid #806641;color:#e1bf8d;padding:12px 16px;text-align:center;cursor:pointer;font:600 12px/1.5 system-ui;letter-spacing:.055em}#hafnia-campaign-bar:focus-visible{outline:2px solid #e1bf8d;outline-offset:2px}.hafnia-offer-note{font:500 12px system-ui;color:#d9b987;margin:6px 0}.hafnia-old-price{font:14px system-ui;color:#a99b89;text-decoration:line-through;margin:6px 0}</style></head>
+<style id="hafnia-campaign-style">#hafnia-campaign-bar{display:none;background:#191613;border-bottom:1px solid #806641;color:#e1bf8d;padding:12px 16px;text-align:center;cursor:pointer;font:600 12px/1.5 system-ui;letter-spacing:.055em}#hafnia-campaign-bar:focus-visible{outline:2px solid #e1bf8d;outline-offset:2px}.hafnia-offer-note{font:700 12px/1.5 system-ui;color:#eac68f;margin:0 auto 18px;text-align:center;letter-spacing:.05em;max-width:90%}.hafnia-old-price{font:500 16px/1.4 system-ui;color:#aa9880;text-decoration:line-through;text-align:center;margin:12px 0 2px}.price-card[data-campaign-target="true"] .amount{margin-top:0}.price-card[data-campaign-target="true"] .hafnia-offer-note{background:#21180f;border:1px solid #725331;border-radius:6px;padding:7px 12px}.price-card[data-campaign-target="true"] .sub{margin-top:0}#hafnia-campaign-bar{position:relative;z-index:110;width:100%;border-radius:0;margin:0;min-height:44px}body:has(#hafnia-campaign-bar[style*="block"]) .topbar{top:0}</style></head>
 <body><button id="hafnia-campaign-bar" type="button" aria-label="Se kampagnetilbud"></button>
   <header class="topbar">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -698,7 +698,7 @@ function render(data){
  const hourly=Number.isInteger(data.hourly)?data.hourly:700;
  document.querySelectorAll('[data-price-summary]').forEach(el=>el.textContent='Hos Hafnia Tattoo starter priser fra '+fmt(base.four_hours-(offers.four_hours?.discount||0))+' kr. for 4 timer og '+fmt(base.full_day-(offers.full_day?.discount||0))+' kr. for heldagssession. Mindre projekter kan også bookes til '+fmt(hourly)+' kr. i timen.');
  const names=[...new Set(Object.values(offers).map(c=>c.name))];
- if(names.length){bar.textContent=names.join(' / ')+' - Se kampagnetilbud';bar.style.display='block';}else{bar.style.display='none';}
+ if(names.length){bar.textContent=names.join(' / ')+' · Se kampagnetilbud ↓';bar.style.display='block';}else{bar.style.display='none';}
 }
 bar.addEventListener('click',()=>document.querySelector('.price-card[data-campaign-target="true"]')?.scrollIntoView({behavior:'smooth',block:'center'}));
 fetch(api,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Campaign fetch '+r.status);return r.json()}).then(render).catch(e=>console.warn('Hafnia campaigns:',e));
