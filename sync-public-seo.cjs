@@ -25,7 +25,7 @@ const gallery=data.gallery.map((src,i)=>'<figure class="work-card" onclick="open
 s=replaceOne(s,/(<script type="application\/json" id="hafnia-thumb-map">)[\s\S]*?(<\/script>)/,(_,a,b)=>a+JSON.stringify(thumbs)+b,'thumbnail map');
 s=replaceOne(s,/(<div class="work-grid">)[\s\S]*?(<\/div>)/,(_,a,b)=>a+'\n          '+gallery+'\n        '+b,'homepage gallery');return s});
 update('tattoo-koebenhavn.html',s=>{
-for(const key of ['four_hours','full_day','hourly'])s=s.replace(new RegExp('(<span data-hafnia-price="'+key+'">)[^<]*(<\\/span>)','g'),(_,a,b)=>a+fmt(data[key])+b);
+for(const key of ['four_hours','full_day','hourly'])s=s.replace(new RegExp('(<span data-hafnia-price="'+key+'">)[^<]*(<\\/span>)','g'),(_,a,b)=>a+fmt(key==='hourly'?data[key]:discounted(key))+b);
 return s});
 console.log('SEO public snapshot updated from admin API; prices and gallery remain dynamically refreshable.');
 })().catch(e=>{console.error(e);process.exitCode=1});
