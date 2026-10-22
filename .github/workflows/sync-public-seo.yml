@@ -5,6 +5,7 @@ on:
     paths:
       - sync-public-seo.cjs
       - audit-public-seo.cjs
+      - redteam-deep-audit.cjs
       - .github/workflows/sync-public-seo.yml
   schedule:
     - cron: '*/15 * * * *'
@@ -33,6 +34,7 @@ jobs:
         run: |
           node --check sync-public-seo.cjs
           node audit-public-seo.cjs
+          node redteam-deep-audit.cjs
           git diff --check
       - name: Commit changes only when public content changed
         run: |
