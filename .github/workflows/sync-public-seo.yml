@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install thumbnail optimizer
+        run: npm ci --no-audit --no-fund
       - name: Refresh crawlable prices and gallery
         run: node sync-public-seo.cjs
       - name: Validate snapshot
@@ -28,7 +30,7 @@ jobs:
           git diff --check
       - name: Commit changes only when public content changed
         run: |
-          git add index.html tattoo-koebenhavn.html
+          git add index.html tattoo-koebenhavn.html images/thumbs/
           if git diff --cached --quiet; then
             echo 'No public changes'
             exit 0

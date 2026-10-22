@@ -2,3 +2,4 @@
 secure-login/.wrangler/
 secure-login/node_modules/
 secure-login/.dev.vars
+node_modules/

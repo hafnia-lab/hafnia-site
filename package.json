@@ -1,0 +1,13 @@
+{
+  "name": "hafnia-public-seo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Crawlable HTML and thumbnail synchronization from Hafnia Tattoo admin",
+  "scripts": {
+    "sync": "node sync-public-seo.cjs",
+    "audit": "node audit-public-seo.cjs"
+  },
+  "dependencies": {
+    "sharp": "^0.34.4"
+  }
+}
