@@ -1,5 +1,10 @@
 name: Sync public SEO content from Hafnia admin
 on:
+  push:
+    branches: [main]
+    paths:
+      - sync-public-seo.cjs
+      - .github/workflows/sync-public-seo.yml
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
