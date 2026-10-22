@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - sync-public-seo.cjs
+      - audit-public-seo.cjs
       - .github/workflows/sync-public-seo.yml
   schedule:
     - cron: '*/15 * * * *'
