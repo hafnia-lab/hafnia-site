@@ -155,8 +155,8 @@
       <div class="hero-inner">
         <div>
           <div class="eyebrow">Tattoo København</div>
-          <h1>Black & Grey<br>Realism Tattoo<br>i København</h1>
-          <p class="lead">Hafnia Tattoo er et privat tattoo studio i hjertet af København med fokus på black & grey realism, custom tattoos, sleeves og større projekter som full back.</p>
+          <h1>Realisme Tattoo<br>i København</h1>
+          <p class="lead">Hafnia Tattoo er et privat tattoo studio i hjertet af København med fokus på realisme i både black & grey og farve, portrætter, sleeves, cover-ups og større projekter som full back.</p>
           <a class="btn btn-primary" href="https://wa.me/4552715288?text=Hi%20I%20want%20to%20book%20a%20tattoo.%20Name:%20%20Idea:%20" target="_blank" rel="noopener">Book på WhatsApp</a>
         </div>
         <aside class="hero-card">
@@ -287,7 +287,7 @@
   const r=await fetch('https://hafnia-control-auth.sylvestweb.workers.dev/api/public?t='+Date.now(),{cache:'no-store'});
   if(!r.ok)throw Error('Price API '+r.status);
   const d=await r.json();
-  const values={four_hours:d.four_hours,full_day:d.full_day,hourly:Number.isInteger(d.hourly)?d.hourly:700};
+  const values={four_hours:d.four_hours,full_day:d.full_day,hourly:d.hourly};
   const format=n=>new Intl.NumberFormat('da-DK').format(n);
   for(const [key,value] of Object.entries(values)){
    if(!Number.isInteger(value))continue;
