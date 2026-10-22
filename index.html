@@ -236,6 +236,10 @@
       opacity:.72;
       transition:.35s ease;
     }
+    /* Keep hero artwork contained on narrow screens, including the picture wrapper. */
+    .hero-logo-wrap picture{display:block;width:min(570px,100%);flex:0 1 auto}
+    .hero-logo-wrap picture .hero-logo{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:contain}
+    @media(max-width:560px){.hero-logo-wrap{min-height:0}.hero-logo-wrap picture{width:min(300px,82vw);margin:0 auto}.hero-logo-wrap picture .hero-logo{width:100%}}
     .work-card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.72) contrast(1.22) brightness(.72) sepia(.28) saturate(.75);transition:.35s ease}
     .work-card:hover:after{opacity:0}
     .work-card:hover:before{box-shadow:inset 0 0 34px rgba(0,0,0,.38)}
@@ -361,6 +365,10 @@
       .brand{font-size:15px}.hero{padding-top:76px}.hero:before{inset:76px 0 0 0;opacity:.4}.hero-logo-wrap{min-height:260px}.hero-logo{width:96vw}.hero-copy{max-width:330px}.eyebrow{font-size:12px}h1{font-size:44px}.section-inner{padding-left:18px;padding-right:18px}.section-label:before,.section-label:after{width:56px}.title{font-size:34px}.work-grid{gap:8px}.work-card{height:215px}.price-card{padding:34px 25px}.amount{font-size:60px}.hours{font-size:13px}.contact-form{grid-template-columns:1fr}
     }
 
+    /* Keep hero artwork contained on narrow screens, including the picture wrapper. */
+    .hero-logo-wrap picture{display:block;width:min(570px,100%);flex:0 1 auto}
+    .hero-logo-wrap picture .hero-logo{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:contain}
+    @media(max-width:560px){.hero-logo-wrap{min-height:0}.hero-logo-wrap picture{width:min(300px,82vw);margin:0 auto}.hero-logo-wrap picture .hero-logo{width:100%}}
     .work-card img{
   width:100%;
   height:100%;
